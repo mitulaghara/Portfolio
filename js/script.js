@@ -85,4 +85,40 @@ function typeWriter() {
 }
 
 // Start typing effect after a short delay
+// Start typing effect after a short delay
 setTimeout(typeWriter, 500);
+
+// Initialize AOS Animation
+AOS.init({
+  duration: 1000,
+  easing: 'ease-in-out',
+  once: true,
+  mirror: false
+});
+
+// Theme Toggle Logic
+const themeToggle = document.querySelector(".theme-toggle");
+const themeIcon = themeToggle.querySelector("i");
+const body = document.body;
+
+// Check for saved theme in localStorage
+const savedTheme = localStorage.getItem("theme");
+if (savedTheme === "dark") {
+  body.classList.add("dark-theme");
+  themeIcon.classList.remove("fa-moon");
+  themeIcon.classList.add("fa-sun");
+}
+
+themeToggle.addEventListener("click", () => {
+  body.classList.toggle("dark-theme");
+
+  if (body.classList.contains("dark-theme")) {
+    themeIcon.classList.remove("fa-moon");
+    themeIcon.classList.add("fa-sun");
+    localStorage.setItem("theme", "dark");
+  } else {
+    themeIcon.classList.remove("fa-sun");
+    themeIcon.classList.add("fa-moon");
+    localStorage.setItem("theme", "light");
+  }
+});
