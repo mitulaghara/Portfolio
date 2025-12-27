@@ -28,10 +28,24 @@ window.addEventListener("scroll", () => {
 });
 
 // Form Submission
+// Form Submission - Redirect to WhatsApp
 document.getElementById("contactForm").addEventListener("submit", function (e) {
   e.preventDefault();
-  alert("Thank you for your message! I will get back to you soon.");
-  this.reset();
+
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const subject = document.getElementById("subject").value;
+  const message = document.getElementById("message").value;
+
+  const whatsappNumber = "918488877692";
+  const whatsappMessage = `Hello, I would like to contact you.%0A%0A*Name:* ${name}%0A*Email:* ${email}%0A*Subject:* ${subject}%0A*Message:* ${message}`;
+
+  const whatsappURL = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+
+  window.open(whatsappURL, "_blank");
+  
+  // Optional: You can still reset the form if you want
+  // this.reset(); 
 });
 
 // Smooth Scrolling
